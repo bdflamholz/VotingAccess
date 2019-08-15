@@ -1,0 +1,23 @@
+% stateDensityTable2019=readtable('StateDensityData2019.csv');
+% save('stateDensityTable2019','stateDensityTable2019');
+load('stateDensityTable2019.mat');
+
+stateDensityTable2019
+
+for statei=1:length(stateAbrs)
+    stateNamei=getfield(stateStruct,stateAbrs{statei},'fullName');
+    tableIndex=find(strcmpi(stateDensityTable2019.State,stateiName)==1);
+    pop=stateDensityTable2019.Pop(tableIndex);
+    density=stateDensityTable2019.Density(tableIndex);
+    stateStruct=setfield(stateStruct,stateAbrs{statei},'Population',pop);
+    stateStruct=setfield(stateStruct,stateAbrs{statei},'Population',pop);
+    
+    voters=getfield(stateStruct,stateAbrs{statei},'totalRegisteredVoters');
+    numJs=getfield(stateStruct,stateAbrs{statei},'numJurisdictions');
+    stateStruct=setfield(stateStruct,stateAbrs{statei},...
+        'VotersPerJurisdiction',voters/numJs);
+end
+
+tableIndex=find(contains(stateDensityTable2019.State,stateiName)==1)
+tableIndex=find(strcmpi(stateDensityTable2019.State,stateiName)==1)
+tableIndex=find(strcmpi(stateDensityTable2019.State,stateStruct.NJ.fullName)==1)
